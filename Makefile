@@ -12,7 +12,7 @@ all: test build
 build:
 	$(GOBUILD) -o $(BINARY_NAME) -v
 install:
-    $(GOINSTALL)
+	$(GOINSTALL)
 test:
 	$(GOTEST) -v ./...
 clean:
