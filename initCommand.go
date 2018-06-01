@@ -4,6 +4,8 @@ import (
 	"github.com/urfave/cli"
 	"os"
 	"runtime"
+	"fmt"
+	"path"
 )
 
 func makeInitCommand() cli.Command {
@@ -20,6 +22,9 @@ func makeInitAction(c *cli.Context) error {
 	homeDir := userHomeDir()
 
 	createAllDirectoryIfNotExists(homeDir + "/.slurp/projects")
+	projectDir := currentProjectDir()
+
+	print(projectDir)
 
 	return nil
 }
@@ -33,6 +38,15 @@ func userHomeDir() string {
 		return home
 	}
 	return os.Getenv("HOME")
+}
+
+func currentProjectDir() string {
+	pwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return path.Base(pwd)
 }
 
 func createAllDirectoryIfNotExists(directory string) {
