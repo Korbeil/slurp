@@ -19,8 +19,7 @@ func makeInitCommand() cli.Command {
 func makeInitAction(c *cli.Context) error {
 	homeDir := userHomeDir()
 
-	createDirectoryIfNotExists(homeDir + "/.slurp")
-	createDirectoryIfNotExists(homeDir + "/.slurp/projects")
+	createAllDirectoryIfNotExists(homeDir + "/.slurp/projects")
 
 	return nil
 }
@@ -36,8 +35,8 @@ func userHomeDir() string {
 	return os.Getenv("HOME")
 }
 
-func createDirectoryIfNotExists(directory string) {
+func createAllDirectoryIfNotExists(directory string) {
 	if _, err := os.Stat(directory); os.IsNotExist(err) {
-		os.Mkdir(directory, os.ModePerm)
+		os.MkdirAll(directory, os.ModePerm)
 	}
 }
