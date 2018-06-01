@@ -24,10 +24,7 @@ func makeConsoleApplication() *cli.App {
 		},
 	}
 
-	app.Action = func(c *cli.Context) error {
-		cli.ShowAppHelp(c)
-		return nil
-	}
+	app.Action = inCommandAction
 
 	return app
 }
