@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/urfave/cli"
 	"log"
 	"os"
-	"github.com/urfave/cli"
 )
 
 func main() {
@@ -16,11 +16,11 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name:    "init",
-			Aliases: []string{"i"},
-			Usage:   "Initialize new project in current directory, if you give no project name, it will make a slug of directory name.",
+			Name:      "init",
+			Aliases:   []string{"i"},
+			Usage:     "Initialize new project in current directory, if you give no project name, it will make a slug of directory name.",
 			ArgsUsage: "<project>",
-			Action:  func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				print("init")
 				return nil
 			},
@@ -29,7 +29,7 @@ func main() {
 			Name:    "burp",
 			Aliases: []string{"b"},
 			Usage:   "Leaving project: reset slurp aliases and bash history paths.",
-			Action:  func(c *cli.Context) error {
+			Action: func(c *cli.Context) error {
 				print("burp")
 				return nil
 			},
