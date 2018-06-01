@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"github.com/urfave/cli"
 	"os"
-	"runtime"
-	"fmt"
 	"path"
+	"runtime"
 )
 
 func makeInitCommand() cli.Command {
