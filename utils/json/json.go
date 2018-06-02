@@ -15,6 +15,7 @@ func WriteJsonInFile(s interface{}, path string) {
 		os.Exit(1)
 	}
 
+	print(path)
 	err = ioutil.WriteFile(path, b, os.ModePerm)
 	if err != nil {
 		fmt.Printf("Can't write JSON file `%s`", path)
