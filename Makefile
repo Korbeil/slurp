@@ -28,4 +28,5 @@ test:
 deps:
 	$(GOCMD) get github.com/Korbeil/slurp/commands
 	$(GOCMD) get github.com/Korbeil/slurp/utils/directory
+	$(GOCMD) get github.com/Korbeil/slurp/utils/json
 	$(GOCMD) get github.com/urfave/cli
