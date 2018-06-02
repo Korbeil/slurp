@@ -13,7 +13,7 @@ func InitCommand() cli.Command {
 		Name:      "init",
 		Aliases:   []string{"i"},
 		Usage:     "Initialize new project in current utils, if you give no project name, it will make a slug of utils name.",
-		ArgsUsage: "<project>",
+		ArgsUsage: "[project]",
 		Action:    makeInitAction,
 	}
 }
