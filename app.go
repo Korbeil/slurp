@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/urfave/cli"
 	"github.com/Korbeil/slurp/utils/commands"
+	"github.com/urfave/cli"
 )
 
 func makeConsoleApplication() *cli.App {
