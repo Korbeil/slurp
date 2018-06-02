@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Korbeil/slurp/utils/directory"
 	"github.com/urfave/cli"
+	"path"
 )
 
 func makeInitCommand() cli.Command {
@@ -17,7 +18,7 @@ func makeInitCommand() cli.Command {
 
 func makeInitAction(c *cli.Context) error {
 	homeDir := directory.UserHome()
-	projectDirName := directory.Current()
+	projectDirName := path.Base(directory.Current())
 
 	projectName := c.Args().First()
 	if projectName == "" {
