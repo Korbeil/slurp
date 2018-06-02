@@ -2,9 +2,15 @@ package commands
 
 import (
 	"github.com/Korbeil/slurp/utils/directory"
+	"github.com/Korbeil/slurp/utils/json"
 	"github.com/urfave/cli"
 	"path"
 )
+
+type Config struct {
+	name string
+	directory string
+}
 
 // InitCommand is used to create cli.Command object
 // Also, this command is used to create a new project
@@ -30,6 +36,10 @@ func makeInitAction(c *cli.Context) error {
 	directory.CreateButWarnIfExists(
 		homeDir+"/.slurp/projects/"+projectName,
 		"Project utils with path `%s` already exists.\n")
+
+	json.WriteJsonInFile(
+		Config{directory.Current(), directory.Current()},
+		homeDir+"/.slurp/projects/"+projectName+"/config.json")
 
 	return nil
 }
