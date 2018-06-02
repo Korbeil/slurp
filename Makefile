@@ -23,6 +23,7 @@ run:
 	$(GOBUILD) -o $(BINARY_NAME) -v ./...
 	./$(BINARY_NAME)
 deps:
+	$(GOGET) github.com/Korbeil/slurp
 	$(GOGET) github.com/urfave/cli
 
 
