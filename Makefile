@@ -26,6 +26,6 @@ install:
 test:
 	$(GOCMD) test -v ./...
 deps:
-	$(GOCMD) get github.com/Korbeil/slurp/utils/commands
+	$(GOCMD) get github.com/Korbeil/slurp/commands
 	$(GOCMD) get github.com/Korbeil/slurp/utils/directory
 	$(GOCMD) get github.com/urfave/cli

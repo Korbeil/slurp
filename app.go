@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Korbeil/slurp/utils/commands"
+	"github.com/Korbeil/slurp/commands"
 	"github.com/urfave/cli"
 )
 
