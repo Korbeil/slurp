@@ -3,10 +3,10 @@ package directory
 import (
 	"fmt"
 	"os"
-	"path"
 	"runtime"
 )
 
+// Get user home fullpath
 func UserHome() string {
 	if runtime.GOOS == "windows" {
 		home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
@@ -18,15 +18,17 @@ func UserHome() string {
 	return os.Getenv("HOME")
 }
 
+// Get current directory fullpath
 func Current() string {
 	pwd, err := os.Getwd()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	return path.Base(pwd)
+	return pwd
 }
 
+// Create directory or exit with message if already exists
 func CreateButWarnIfExists(directory string, message string) {
 	if _, err := os.Stat(directory); err == nil {
 		fmt.Printf(message, directory)
