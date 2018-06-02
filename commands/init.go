@@ -7,6 +7,7 @@ import (
 	"path"
 )
 
+// Config is used to store project details
 type Config struct {
 	Name      string
 	Directory string
