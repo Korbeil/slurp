@@ -6,7 +6,7 @@ import (
 	"runtime"
 )
 
-// Get user home fullpath
+// UserHome get user home fullpath
 func UserHome() string {
 	if runtime.GOOS == "windows" {
 		home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
@@ -18,7 +18,7 @@ func UserHome() string {
 	return os.Getenv("HOME")
 }
 
-// Get current directory fullpath
+// Current returns current directory fullpath
 func Current() string {
 	pwd, err := os.Getwd()
 	if err != nil {
@@ -28,7 +28,7 @@ func Current() string {
 	return pwd
 }
 
-// Create directory or exit with message if already exists
+// CreateButWarnIfExists create directory or exit with message if already exists
 func CreateButWarnIfExists(directory string, message string) {
 	if _, err := os.Stat(directory); err == nil {
 		fmt.Printf(message, directory)
