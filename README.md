@@ -19,11 +19,13 @@ Like that, you'll have a working `slurp` command within your terminal :)
 ### slurp project
 
 It permits to jump from one project to another.
+
 The project argument is required and is also the name of the project to jump to.
 
 ### slurp init [project]
 
 This command is used to create a new project.
+
 The project argument is optional and is also the name of the project to create, if not given we take the current directory slugged name.
 
 ### slurp burp
