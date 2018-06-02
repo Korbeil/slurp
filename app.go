@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/urfave/cli"
+	"github.com/Korbeil/slurp/utils/commands"
 )
 
 func makeConsoleApplication() *cli.App {
@@ -13,8 +14,8 @@ func makeConsoleApplication() *cli.App {
 	app.UsageText = "slurp <project> \n\t slurp init <project>\n\t slurp burp"
 
 	app.Commands = []cli.Command{
-		makeInitCommand(),
-		makeBurpCommand(),
+		commands.InitCommand(),
+		commands.BurpCommand(),
 	}
 
 	app.Flags = []cli.Flag{
@@ -24,7 +25,7 @@ func makeConsoleApplication() *cli.App {
 		},
 	}
 
-	app.Action = inCommandAction
+	app.Action = commands.InCommandAction
 
 	return app
 }
