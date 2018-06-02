@@ -8,8 +8,8 @@ import (
 )
 
 type Config struct {
-	name string
-	directory string
+	Name string
+	Directory string
 }
 
 // InitCommand is used to create cli.Command object
@@ -38,7 +38,7 @@ func makeInitAction(c *cli.Context) error {
 		"Project utils with path `%s` already exists.\n")
 
 	json.WriteJsonInFile(
-		Config{directory.Current(), directory.Current()},
+		Config{Name: directory.Current(), Directory: directory.Current()},
 		homeDir+"/.slurp/projects/"+projectName+"/config.json")
 
 	return nil
