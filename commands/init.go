@@ -27,11 +27,10 @@ func InitCommand() cli.Command {
 
 func makeInitAction(c *cli.Context) error {
 	homeDir := directory.UserHome()
-	projectDirName := path.Base(directory.Current())
 
 	projectName := c.Args().First()
 	if projectName == "" {
-		projectName = projectDirName
+		projectName = path.Base(directory.Current())
 	}
 
 	directory.CreateButWarnIfExists(
