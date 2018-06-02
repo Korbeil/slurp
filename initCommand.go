@@ -20,9 +20,14 @@ func makeInitCommand() cli.Command {
 
 func makeInitAction(c *cli.Context) error {
 	homeDir := userHomeDir()
-	projectDir := currentProjectDir()
+	projectDirName := currentProjectDir()
 
-	projectDir = homeDir + "/.slurp/projects/" + projectDir
+	projectName := c.Args().First()
+	if projectName == "" {
+		projectName = projectDirName
+	}
+
+	projectDir := homeDir + "/.slurp/projects/" + projectName
 	createDirectoryWarnIfExists(projectDir)
 
 	return nil
