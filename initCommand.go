@@ -20,11 +20,10 @@ func makeInitCommand() cli.Command {
 
 func makeInitAction(c *cli.Context) error {
 	homeDir := userHomeDir()
-
-	createAllDirectoryIfNotExists(homeDir + "/.slurp/projects")
 	projectDir := currentProjectDir()
 
-	print(projectDir)
+	projectDir = homeDir + "/.slurp/projects/" + projectDir
+	createDirectoryWarnIfExists(projectDir)
 
 	return nil
 }
@@ -49,8 +48,11 @@ func currentProjectDir() string {
 	return path.Base(pwd)
 }
 
-func createAllDirectoryIfNotExists(directory string) {
-	if _, err := os.Stat(directory); os.IsNotExist(err) {
-		os.MkdirAll(directory, os.ModePerm)
+func createDirectoryWarnIfExists(directory string) {
+	if _, err := os.Stat(directory); err == nil {
+		fmt.Printf("Project directory with path `%s` already exists.\n", directory)
+		os.Exit(1)
 	}
+
+	os.MkdirAll(directory, os.ModePerm)
 }
