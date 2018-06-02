@@ -38,7 +38,7 @@ func makeInitAction(c *cli.Context) error {
 		"Project utils with path `%s` already exists.\n")
 
 	json.WriteJsonInFile(
-		Config{Name: directory.Current(), Directory: directory.Current()},
+		Config{Name: projectName, Directory: homeDir},
 		homeDir+"/.slurp/projects/"+projectName+"/config.json")
 
 	return nil
