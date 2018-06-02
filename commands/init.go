@@ -8,7 +8,7 @@ import (
 )
 
 type Config struct {
-	Name string
+	Name      string
 	Directory string
 }
 
