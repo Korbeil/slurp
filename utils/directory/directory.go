@@ -1,10 +1,10 @@
 package directory
 
 import (
-	"runtime"
-	"os"
 	"fmt"
+	"os"
 	"path"
+	"runtime"
 )
 
 func UserHome() string {
