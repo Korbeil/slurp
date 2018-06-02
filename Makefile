@@ -1,34 +1,30 @@
 # Go parameters
 GOCMD=go
-GOBUILD=$(GOCMD) build
-GOINSTALL=$(GOCMD) install
-GOCLEAN=$(GOCMD) clean
-GOTEST=$(GOCMD) test
-GOGET=$(GOCMD) get
-BINARY_NAME=build/slurp
+BUILD_DIR=build
+BINARY_NAME=slurp
 BINARY_UNIX=$(BINARY_NAME)_unix
+.PHONY: build
 
 all: test build
+
+# Build tasks
 build:
-	$(GOBUILD) -o $(BINARY_NAME) -v
-install:
-	$(GOINSTALL)
-test:
-	$(GOTEST) -v ./...
-clean:
-	$(GOCLEAN)
-	rm -f $(BINARY_NAME)
-	rm -f $(BINARY_UNIX)
-run:
-	$(GOBUILD) -o $(BINARY_NAME) -v ./...
-	./$(BINARY_NAME)
-deps:
-	$(GOGET) github.com/Korbeil/slurp
-	$(GOGET) github.com/urfave/cli
-
-
-# Cross compilation
+	rm -f $(BUILD_DIR)/$(BINARY_NAME)
+	$(GOCMD) build -v
+	mv $(BINARY_NAME) $(BUILD_DIR)/
 build-linux:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v
-docker-build:
-	docker run --rm -it -v "$(GOPATH)":/go -w /go/src/bitbucket.org/rsohlich/makepost golang:latest go build -o "$(BINARY_UNIX)" -v
+	rm -f $(BUILD_DIR)/$(BINARY_UNIX)
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOCMD) build -v
+	mv $(BINARY_NAME) $(BUILD_DIR)/$(BINARY_UNIX)
+clean:
+	$(GOCMD) clean
+	rm -f $(BUILD_DIR)/$(BINARY_NAME)
+	rm -f $(BUILD_DIR)/$(BINARY_UNIX)
+install:
+	$(GOCMD) install
+
+test:
+	$(GOCMD) test -v ./...
+deps:
+	$(GOCMD) get github.com/Korbeil/slurp
+	$(GOCMD) get github.com/urfave/cli
