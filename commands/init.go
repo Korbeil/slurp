@@ -21,10 +21,11 @@ func InitCommand() cli.Command {
 
 func makeInitAction(c *cli.Context) error {
 	homeDir := directory.UserHome()
+	currentDir := directory.Current()
 
 	projectName := c.Args().First()
 	if projectName == "" {
-		projectName = path.Base(directory.Current())
+		projectName = path.Base(currentDir)
 	}
 
 	directory.CreateButWarnIfExists(
@@ -32,7 +33,7 @@ func makeInitAction(c *cli.Context) error {
 		"Project utils with path `%s` already exists.\n")
 
 	json.WriteJsonInFile(
-		Project{Name: projectName, Directory: homeDir},
+		Project{Name: projectName, Directory: currentDir},
 		homeDir+"/.slurp/projects/"+projectName+"/config.json")
 
 	return nil
