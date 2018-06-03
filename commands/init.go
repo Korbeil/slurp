@@ -7,12 +7,6 @@ import (
 	"path"
 )
 
-// Config is used to store project details
-type Config struct {
-	Name      string
-	Directory string
-}
-
 // InitCommand is used to create cli.Command object
 // Also, this command is used to create a new project
 func InitCommand() cli.Command {
