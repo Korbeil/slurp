@@ -5,6 +5,8 @@ import (
 	utilsJson "github.com/Korbeil/slurp/utils/json"
 	"github.com/Korbeil/slurp/utils/directory"
 	"encoding/json"
+	"os"
+	"fmt"
 )
 
 // InCommandAction is used as default action
@@ -14,6 +16,11 @@ func InCommandAction(c *cli.Context) error {
 	projectName := c.Args().First()
 	env := loadEnv(homeDir)
 
+	// Checking if env is empty 
+	if env.Project == "" {
+		fmt.Printf("No last project in env.")
+		os.Exit(1)
+	}
 	// If no project name given, we take last project we loaded from env
 	if projectName == "" {
 		projectName = env.Project
@@ -36,8 +43,20 @@ func loadProject(homeDir string, projectName string) Config {
 }
 
 func loadEnv(homeDir string) Environment {
+	envPath := homeDir+"/.slurp/env.json"
+
+	// env doesn't exists, let's create it and return an empty one
+	if directory.CheckExists(envPath) == false {
+		env := Environment{Project: "", OldBashHistoryPath: ""}
+		utilsJson.WriteJsonInFile(
+			env,
+			envPath)
+		return env
+	}
+
+	// or just read it :)
 	var b []byte
-	b = utilsJson.ReadJson(homeDir+"/.slurp/env.json")
+	b = utilsJson.ReadJson(envPath)
 
 	var env Environment
 	json.Unmarshal(b, &env)
