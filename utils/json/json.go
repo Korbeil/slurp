@@ -26,7 +26,7 @@ func WriteJsonInFile(s interface{}, path string) {
 func ReadJson(path string) []byte {
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Printf("Can't read JSON file `%s`", path)
 		os.Exit(1)
 	}
 	return b
