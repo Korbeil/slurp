@@ -16,11 +16,11 @@ Like that, you'll have a working `slurp` command within your terminal :)
 
 ## Usage
 
-### slurp project
+### slurp [project]
 
 It permits to jump from one project to another.
 
-The project argument is required and is also the name of the project to jump to.
+The project argument is optional and is also the name of the project to jump to. If no name is given, we'll slurp the last project that was slurped.
 
 ### slurp init [project]
 
