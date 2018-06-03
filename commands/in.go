@@ -47,7 +47,7 @@ func loadEnv(homeDir string) Environment {
 
 	// env doesn't exists, let's create it and return an empty one
 	if directory.CheckExists(envPath) == false {
-		env := Environment{Project: "", OldBashHistoryPath: ""}
+		env := Environment{Project: "", OldBashHistoryPath: os.Getenv("HISTFILE")}
 		utilsJson.WriteJsonInFile(
 			env,
 			envPath)
