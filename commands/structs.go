@@ -1,7 +1,7 @@
 package commands
 
-// Config is used to store project details
-type Config struct {
+// Project is used to store project details
+type Project struct {
 	Name      string
 	Directory string
 }

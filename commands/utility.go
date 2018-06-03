@@ -28,11 +28,11 @@ func loadEnv(homeDir string) Environment {
 	return env
 }
 
-func loadProject(homeDir string, projectName string) Config {
+func loadProject(homeDir string, projectName string) Project {
 	var b []byte
 	b = utilsJson.ReadJson(homeDir+"/.slurp/projects/"+projectName+"/config.json")
 
-	var conf Config
+	var conf Project
 	json.Unmarshal(b, &conf)
 	return conf
 }
