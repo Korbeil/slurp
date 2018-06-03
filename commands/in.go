@@ -2,6 +2,7 @@ package commands
 
 import (
 	"github.com/urfave/cli"
+	utilsJson "github.com/Korbeil/slurp/utils/json"
 	"github.com/Korbeil/slurp/utils/directory"
 	"os"
 	"fmt"
@@ -29,7 +30,11 @@ func InCommandAction(c *cli.Context) error {
 	// Setting new bash_history
 	os.Setenv("HISTFILE", homeDir+"/.slurp/projects/"+projectName+"/bash_history")
 
-	print(project.Directory)
+	// Setting current project in env
+	env.Project = project.Name
+	utilsJson.WriteJsonInFile(
+		env,
+		homeDir+"/.slurp/env.json")
 
 	return nil
 }
