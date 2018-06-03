@@ -15,16 +15,15 @@ func InCommandAction(c *cli.Context) error {
 	projectName := c.Args().First()
 	env := loadEnv(homeDir)
 
-	// Checking if env is empty 
-	if env.Project == "" {
-		fmt.Printf("No last project in env.")
-		os.Exit(1)
-	}
-	// If no project name given, we take last project we loaded from env
 	if projectName == "" {
+		// Checking if env is empty 
+		if env.Project == "" {
+			fmt.Printf("No last project in env.")
+			os.Exit(1)
+		}
+		// If no project name given, we take last project we loaded from env
 		projectName = env.Project
 	}
-
 	project := loadProject(homeDir, projectName)
 
 	// Setting new bash_history
