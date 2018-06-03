@@ -21,3 +21,13 @@ func WriteJsonInFile(s interface{}, path string) {
 		os.Exit(1)
 	}
 }
+
+// ReadJson is used to read Json from given path
+func ReadJson(path string) []byte {
+	b, err := ioutil.ReadFile(path)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	return b
+}
