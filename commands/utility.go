@@ -5,6 +5,7 @@ import (
 	"github.com/Korbeil/slurp/utils/directory"
 	"encoding/json"
 	"os"
+	"fmt"
 )
 
 func loadEnv(homeDir string) Environment {
@@ -12,6 +13,7 @@ func loadEnv(homeDir string) Environment {
 
 	// env doesn't exists, let's create it and return an empty one
 	if directory.CheckExists(envPath) == false {
+		fmt.Printf("Bash history file: `%s`", os.Getenv("HISTFILE"))
 		env := Environment{Project: "", OldBashHistoryPath: os.Getenv("HISTFILE")}
 		utilsJson.WriteJsonInFile(
 			env,
