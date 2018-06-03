@@ -30,10 +30,18 @@ func Current() string {
 
 // CreateButWarnIfExists create directory or exit with message if already exists
 func CreateButWarnIfExists(directory string, message string) {
-	if _, err := os.Stat(directory); err == nil {
+	if CheckExists(directory) {
 		fmt.Printf(message, directory)
 		os.Exit(1)
 	}
 
 	os.MkdirAll(directory, os.ModePerm)
+}
+
+// CheckExists check if given directory exists or not
+func CheckExists(directory string) bool {
+	if _, err := os.Stat(directory); err == nil {
+		return true
+	}
+	return false
 }
